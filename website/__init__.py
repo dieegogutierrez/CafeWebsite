@@ -23,4 +23,7 @@ app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
 app.config['SECURITY_PASSWORD_SALT'] = os.getenv("SECURITY_PASSWORD_SALT")
 mail = Mail(app)
 
+with app.app_context():
+    db.create_all()
+
 from website import routes
