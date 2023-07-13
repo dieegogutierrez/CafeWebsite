@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="form-background d-flex justify-content-center align-items-center">
+         <form class="form-container" method="POST" action="">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">{{ legend }}</legend>
+                <div class="form-group">
+                    {{ form.name.label(class="form-control-label") }}
+                    {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.map_url.label(class="form-control-label") }}
+                    {% if form.map_url.errors %}
+                        {{ form.map_url(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.map_url.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.map_url(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.img_url.label(class="form-control-label") }}
+                    {% if form.img_url.errors %}
+                        {{ form.img_url(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.img_url.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.img_url(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.location.label(class="form-control-label") }}
+                    {% if form.location.errors %}
+                        {{ form.location(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.location.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.location(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.seats.label(class="form-control-label") }}
+                    {% if form.seats.errors %}
+                        {{ form.seats(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.seats.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.seats(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.coffee_price.label(class="form-control-label") }}
+                    {% if form.coffee_price.errors %}
+                        {{ form.coffee_price(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.coffee_price.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.coffee_price(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.has_sockets.label(class="form-check-label") }}
+                    {{ form.has_sockets(class="form-check-input") }}
+
+                    {{ form.has_toilet.label(class="form-check-label") }}
+                    {{ form.has_toilet(class="form-check-input") }}
+
+                    {{ form.has_wifi.label(class="form-check-label") }}
+                    {{ form.has_wifi(class="form-check-input") }}
+
+                    {{ form.can_take_calls.label(class="form-check-label") }}
+                    {{ form.can_take_calls(class="form-check-input") }}
+                </div>
+            </fieldset>
+            <div class="form-group py-2">
+                {{ form.submit(class="btn btn-dark") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

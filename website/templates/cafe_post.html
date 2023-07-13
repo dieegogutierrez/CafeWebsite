@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container d-flex justify-content-center">
+                <div class="card-container-sm">
+                  <div class="card shadow-sm">
+                      <img class="card-img-top" width="100%" height="225" src="{{ cafe.img_url }}" alt="cafe-img">
+                      <div class="card-header">
+                            <h5 class="card-title">{{ cafe.name }}</h5>
+                            <p class="card-text">{{ cafe.location }}</p>
+                      </div>
+                      <ul class="list-group list-group-flush p-2">
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Has sockets:</span>
+                                    {% if cafe.has_sockets %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Has toilet:</span>
+                                    {% if cafe.has_toilet %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Has wifi:</span>
+                                    {% if cafe.has_wifi %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Can take calls:</span>
+                                    {% if cafe.can_take_calls %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Seats:</span>
+                                        <span>{{ cafe.seats }}</span>
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Coffee Price:</span>
+                                        <span>{{ cafe.coffee_price }}</span>
+                                </li>
+                        </ul>
+                    <div class="card-footer">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-info" href="{{ cafe.map_url }}" target="_blank">Maps</a>
+                            <a class="btn btn-sm btn-dark" href="{{ url_for('update_cafe', post_id=cafe.id) }}">Update</a>
+                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete</button>
+                        </div>
+                            <small class="text-body-secondary m-2">Added by:
+                                {% if cafe.author %}
+                                    <a href="{{ url_for('account', user_id=cafe.author.id) }}">{{ cafe.author.username }}</a>
+                                {% else %}
+                                    <a href="{{ url_for('home') }}">Cafe&Wifi</a>
+                                {% endif %}
+                            </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="deleteModalLabel">Delete</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            Are you sure you want to delete this cafe?
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <form action="{{ url_for('delete_cafe', post_id=cafe.id) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Delete">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock content %}

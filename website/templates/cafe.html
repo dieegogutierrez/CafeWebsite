@@ -1,0 +1,103 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="album py-4 bg-body-tertiary">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h2>Cafes</h2>
+                {% if current_user.is_authenticated %}
+                    <div class="text-center">
+                        <a class="btn btn-dark mb-2" href="{{ url_for('new_cafe') }}">New Cafe</a>
+                    </div>
+                {% endif %}
+                <div class="d-inline">
+                    <span class="badge rounded-pill text-bg-dark fs-6 mb-2">
+                        {{ cafes.first }} - {{ cafes.last }} of {{ cafes.total }}
+                    </span>
+                </div>
+            </div>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-3">
+              {% for cafe in cafes.items %}
+                <div class="col">
+                  <div class="card shadow-sm">
+                      <a href="{{ url_for('cafe_post', post_id=cafe.id)}}"><img class="card-img-top" width="100%" height="225" src="{{ cafe.img_url }}" alt="cafe-img"></a>
+                      <div class="card-header">
+                            <h5 class="card-title">{{ cafe.name }}</h5>
+                            <p class="card-text">{{ cafe.location }}</p>
+                      </div>
+                      <ul class="list-group list-group-flush p-2">
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Has sockets:</span>
+                                    {% if cafe.has_sockets %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Has toilet:</span>
+                                    {% if cafe.has_toilet %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Has wifi:</span>
+                                    {% if cafe.has_wifi %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Can take calls:</span>
+                                    {% if cafe.can_take_calls %}
+                                        <span>✅</span>
+                                    {% else %}
+                                        <span>🚫</span>
+                                    {% endif %}
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Seats:</span>
+                                        <span>{{ cafe.seats }}</span>
+                                </li>
+                                <li class="list-group-item w-100 d-flex justify-content-between px-5">
+                                    <span>Coffee Price:</span>
+                                        <span>{{ cafe.coffee_price }}</span>
+                                </li>
+                        </ul>
+                    <div class="card-footer">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a class="btn btn-sm btn-info" href="{{ cafe.map_url }}" target="_blank">Maps</a>
+                            <a class="btn btn-sm btn-dark" href="{{ url_for('cafe_post', post_id=cafe.id) }}">Edit</a>
+                        </div>
+                            <small class="text-body-secondary">Added by:
+                                {% if cafe.author %}
+                                    <a href="{{ url_for('account', user_id=cafe.author.id) }}">{{ cafe.author.username }}</a>
+                                {% else %}
+                                    <a href="{{ url_for('home') }}">Cafe&Wifi</a>
+                                {% endif %}
+                            </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+          </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        {% for page_num in cafes.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+              {% if page_num %}
+                {% if cafes.page == page_num %}
+                  <a class="btn btn-dark mb-4" href="{{ url_for('cafe', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                  <a class="btn btn-outline-dark mb-4" href="{{ url_for('cafe', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+              {% else %}
+                ...
+              {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}

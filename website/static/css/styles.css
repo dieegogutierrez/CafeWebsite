@@ -1,0 +1,42 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: Cursive;
+}
+p {
+    font-family: Montserrat;
+}
+.navbar-brand {
+    font-family: Cursive;
+}
+.carousel {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+.carousel-caption {
+  bottom: 3rem;
+  z-index: 10;
+}
+.carousel-item {
+  height: 32rem;
+}
+.image {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  opacity: 0.7;
+}
+.card-header {
+    height:6rem;
+}
+.form-background {
+    width: 100%;
+    background-image: url('/static/assets/images/cafe-img-4.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 40rem;
+    margin-top:4rem;
+}
+.form-container {
+  background-color: #F5F5F5;
+  padding: 20px;
+  width: 55%;
+}
