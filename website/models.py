@@ -50,7 +50,5 @@ class User(db.Model, UserMixin):
         return f"User('{self.username}', '{self.email}')"
 
 
-with app.app_context():
-    db.create_all()
-
-
+# with app.app_context():
+#     db.create_all()
