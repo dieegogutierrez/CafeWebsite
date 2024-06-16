@@ -4,7 +4,7 @@ Welcome to the Work-Friendly Cafes in London website! This platform is designed 
 
 ## Try It Out
 
-Experience the website firsthand by clicking [HERE](https://cafewebsite/dgutierrezengineer.com).
+Experience the website firsthand by clicking [HERE](https://cafewebsite.dgutierrezengineer.com).
 
 ## Features
 
